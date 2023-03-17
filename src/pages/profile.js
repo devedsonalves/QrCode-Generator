@@ -3,17 +3,33 @@ import { useParams } from 'react-router-dom';
 const Profile = () => {
 	const { name, linkedin, github } = useParams();
 
-	const current = window.location.href;
 	const linkedinString = 'https://www.linkedin.com/in/' + linkedin;
 	const githubString = 'https://www.github.com/' + github;
 
 	return (
-		<div className=''>
-			<p>Hello, my name is {name}</p>
-			{current}
+		<div className='flex flex-col items-center justify-center'>
+			<p className='m-10'>
+				Hello, my name is <span className='font-bold'>{name}</span>
+			</p>
 
-			<a href={githubString}>GitHub</a>
-			<a href={linkedinString}>LinkedIn</a>
+			<p>Feel free to reach me in my social media:</p>
+
+			<div className='m-5'>
+				<a
+					target='_blank'
+					href={githubString}
+					className='bg-green-400 rounded-lg text-green-900 font-semibold p-3 m-2 text-center'
+				>
+					GitHub
+				</a>
+				<a
+					target='_blank'
+					href={linkedinString}
+					className='bg-green-400 rounded-lg text-green-900 font-semibold p-3 m-2 text-center'
+				>
+					LinkedIn
+				</a>
+			</div>
 		</div>
 	);
 };
