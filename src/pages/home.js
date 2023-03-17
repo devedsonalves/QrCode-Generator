@@ -1,7 +1,7 @@
-import QRCode from 'react-qr-code';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import QRCode from 'react-qr-code';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 function Home() {
 	const current = window.location.href;
@@ -104,7 +104,7 @@ function Home() {
 				</form>
 				{htmlBlobUrl && (
 					<div className='flex flex-col m-10 gap-2'>
-						<QRCode value='http://localhost:3000/93109ed8-49d0-490c-a05b-0c9c6d634434' />
+						<QRCode value={linkURL} />
 						<button
 							title='Copy to clipboard'
 							className='bg-green-400 rounded-lg text-green-900 font-semibold p-3'
