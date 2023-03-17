@@ -2,6 +2,11 @@ import { useState } from 'react';
 import QRCode from 'react-qr-code';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
+import {
+	HiOutlineDocumentDuplicate,
+	HiArrowTopRightOnSquare,
+} from 'react-icons/hi2';
 
 function Home() {
 	const {
@@ -20,8 +25,14 @@ function Home() {
 		setFormData(data);
 	};
 
+	const copyLink = (newPageUrl) => {
+		navigator.clipboard.writeText(newPageUrl);
+		toast.success('Link copied succefully!');
+	};
+
 	return (
 		<section className='flex justify-center'>
+			<ToastContainer />
 			<div className='m-10 rounded-lg flex flex-col w-fit h-fit items-center'>
 				<h1 className='font-bold text-2xl'>QR Code Generator</h1>
 				<form
@@ -77,27 +88,26 @@ function Home() {
 						Generate QRCode
 					</button>
 				</form>
+				{formData && (
+					<div className='flex flex-col m-10 gap-2'>
+						<QRCode value={linkURL} />
+						<button
+							title='Copy to clipboard'
+							className='bg-green-400 rounded-lg text-green-900 font-semibold p-3 items-center justify-center flex'
+							onClick={() => copyLink(linkURL)}
+						>
+							Copiar URL
+							<HiOutlineDocumentDuplicate />
+						</button>
+						<Link
+							className='bg-green-400 rounded-lg text-green-900 font-semibold p-3 items-center justify-center flex'
+							to={`/profile/${formData.name}/${formData.linkedin}/${formData.github}`}
+						>
+							Open in new Page <HiArrowTopRightOnSquare />
+						</Link>
+					</div>
+				)}
 			</div>
-			{formData && (
-				<div className='flex flex-col m-10 gap-2'>
-					<QRCode value={linkURL} />
-					<button
-						title='Copy to clipboard'
-						className='bg-green-400 rounded-lg text-green-900 font-semibold p-3'
-						onClick={() => {
-							navigator.clipboard.writeText(linkURL);
-						}}
-					>
-						Copiar URL
-					</button>
-					<Link
-						className='bg-green-400 rounded-lg text-green-900 font-semibold p-3 text-center'
-						to={`/profile/${formData.name}/${formData.linkedin}/${formData.github}`}
-					>
-						Open in new Page
-					</Link>
-				</div>
-			)}
 		</section>
 	);
 }

@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 const Profile = () => {
 	const { name, linkedin, github } = useParams();
 
-	const linkedinString = 'https://www.linkedin.com/in/' + linkedin;
 	const githubString = 'https://www.github.com/' + github;
+	const linkedinString = 'https://www.linkedin.com/in/' + linkedin;
 
 	return (
 		<div className='flex flex-col items-center justify-center'>
