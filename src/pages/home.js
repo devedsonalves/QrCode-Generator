@@ -31,7 +31,7 @@ function Home() {
 	};
 
 	return (
-		<section className='flex justify-center'>
+		<section className='flex justify-center items-center w-screen h-screen'>
 			<ToastContainer />
 			<div className='m-10 rounded-lg flex flex-col w-fit h-fit items-center'>
 				<h1 className='font-bold text-2xl'>QR Code Generator</h1>
